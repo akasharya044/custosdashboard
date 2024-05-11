@@ -1,0 +1,45 @@
+﻿@page "/systemsoftwarelist/{user}"
+@using custos.Models.DTO;
+@rendermode InteractiveServer
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+
+    <div class="row">
+        <div class="col-6">
+            <h3 style="margin-bottom:-2.5rem;" class="custom-heading">@user Software Information</h3>
+
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom:5px">
+            <a class="btn  btn-outline-secondary" href="systemsoftware"><i class="fa fa-solid fa-backward"></i> Back To Software Activity</a>
+            <button class="btn btn-outline-secondary" @onclick=@DownloadCsvHardware><i class=" fa fa-solid fa-download"></i></button>
+        </div>
+    </div>
+
+    <div class="loader" hidden="@(loading?false:true)"></div>
+    <RadzenDataGrid Data="_softwarelist" AllowPaging="true" PageSize="10" AllowSorting="true"
+                    TItem="SoftwareInformationDto" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+
+        <Columns>
+            <RadzenDataGridColumn Width="50px" TItem="SoftwareInformationDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                <Template Context="ctx">
+                    @(_softwarelist.ToList()?.IndexOf(ctx) + 1)
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="ProcessName" Title="ProcessName" Width="100%" />
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="WindowTitle" Title="WindowTitle" Width="100%" />
+
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="MemorySize" Title="MemorySize" Width="100%" />
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="ModuleName" Title="ModuleName" Width="100%" />
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="Starttime" Title="Starttime" Width="100%" />
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="Pid" Title="Pid" Width="100%" />
+            <RadzenDataGridColumn TItem="SoftwareInformationDto" Property="CpuUsage" Title="CpuUsage" Width="100%" />
+
+
+        </Columns>
+    </RadzenDataGrid>
+</RadzenCard>

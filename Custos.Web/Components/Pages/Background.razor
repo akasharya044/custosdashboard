@@ -1,0 +1,59 @@
+﻿@page "/background"
+@using custos.Models.DTO;
+@rendermode InteractiveServer
+
+ <RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+    <div class="notification-container">
+	    <RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+    </div>
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+    <div class="col-6">
+        <h3 style="margin-bottom:-2.5rem;" class="custom-heading">BackGround Activity</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+            
+            <button class="btn  btn-outline-secondary" @onclick=@DownloadCsvBackground><i class=" fa fa-solid fa-download"></i></button> 
+            </div>
+    </div>
+
+    <div class="loader" hidden="@(loading?false:true)"></div>
+    
+
+    <RadzenDataGrid Data="_background" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="BackgroundserviceDTO" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+        <Columns>
+            <RadzenDataGridColumn Width="30%" TItem="BackgroundserviceDTO" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                <Template Context="ctx">
+                    @(_background.ToList()?.IndexOf(ctx) + 1)
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="UserId" Title="UserId" Width="150px" />
+            <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="CpuUsgaes" Title="CpuUsgaes" Width="50%" />
+          @* <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="CPU_Alert" Title="CPU_Alert" Width="100%" /> *@
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="CPU_TimeStamp" Title="CPU_TimeStamp" Width="100%" />
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="MemoryUsages" Title="MemoryUsages" Width="50%" />
+         @*  <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="Memory_Alert" Title="Memory_Alert" Width="100%" /> *@
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="Memory_TimeStamp" Title="Memory_TimeStamp" Width="100%" />
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="NetworkUsgaes" Title="NetworkUsgaes" Width="50%" />
+          @* <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="Network_Alert" Title="Network_Alert" Width="100%" /> *@
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="Network_TimeStamp" Title="Network_TimeStamp" Width="100%" />
+          <RadzenDataGridColumn TItem="BackgroundserviceDTO" Property="" Title="View" Width="100px" TextAlign="TextAlign.Center">
+				<Template Context="context">
+					<a @onclick="@(args=>ShowEvenList(context.UserId))" class="text-decoration-none  fw-bold" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true"></i>View</a>
+				</Template>
+			</RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</RadzenCard>
+
+<script>
+    window.openFilePicker = function (id) {
+        document.getElementById(id).click();
+    }
+</script>

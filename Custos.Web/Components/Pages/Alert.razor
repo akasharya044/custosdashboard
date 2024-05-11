@@ -1,0 +1,33 @@
+﻿
+@page "/alert"
+@using custos.Models.DTO;
+@rendermode InteractiveServer
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<div class="notification-container">
+    <RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+</div>
+
+
+<div class="loader" hidden="@(loading?false:true)"></div>
+
+
+<ul class="list-group">
+        @foreach (var item in _background)
+        {
+            <li class="list-group-item">
+                <div class="text-primary">User ID: @item.UserId</div>
+                <div class="text-success">Memory Usage: @item.MemoryUsages</div>
+                <div class="text-danger">Memory TimeStamp: @item.Memory_TimeStamp</div>
+            </li>
+        }
+    </ul>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@page "/device"
+@using custos.Models.DTO
+@rendermode InteractiveServer
+
+
+
+ <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+     <div class="row">
+         <div class="col-6">
+             <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Device Information</h3>
+             </div>
+             <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+                 
+                 <button class="btn  btn-outline-secondary" @onclick=@DownloadCsvDevice><i class=" fa fa-solid fa-download"></i></button> 
+                 </div>
+         </div>
+   
+        
+        
+   <div class="loader" hidden="@(loading?false:true)"></div>
+    <RadzenDataGrid Data="_device" AllowPaging="true" PageSize="10" AllowSorting="true"
+                    TItem="DeviceDetailsDTO" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+
+        <Columns>
+            
+            
+             <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="SystemId" Title="SystemId" Width="100%" />
+             <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="DeviceVersion" Title="DeviceVersion" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="DeviceName" Title="DeviceName" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="BIOS" Title="BIOS" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="MACAddress" Title="MACAddress" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="IPAddress" Title="IPAddress" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="VirtualMemory" Title="VirtualMemory" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="AvailableVirtualMemory" Title="AvailableVirtualMemory" Width="100%" />
+
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="DisplayManufacturer" Title="DisplayManufacturer" Width="100%" />
+            <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="DisplayDetails" Title="DisplayDetails" Width="100%" />
+             <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="DisplayName" Title="DisplayName" Width="100%" />
+             <RadzenDataGridColumn TItem="DeviceDetailsDTO" Property="TimeStamp" Title="TimeStamp" Width="100%" />
+
+            
+
+
+        </Columns>
+    </RadzenDataGrid> 
+ </RadzenCard> 
+
+
+ <style>
+
+     .loader {
+    border: 12px solid silver;
+    border-top: 12px solid #337AB7;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 700ms linear infinite;
+    top: 60%;
+    left: 60%;
+    position: absolute;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+     </style>

@@ -1,0 +1,177 @@
+﻿@page "/dashboard"
+@rendermode InteractiveServer
+@using custos.Models
+@using custos.Models.SystemInfo
+<PageTitle>Home</PageTitle>
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+
+<div class="loader" hidden="@(loading?false:true)"></div>
+
+<RadzenRow>
+    <RadzenColumn Style="padding-bottom:10px;" SizeMD="4" onclick="ToggleVisibility2()">
+        <RadzenCard Style="max-width: 300px ; height: 160px!important;background-color:white;box-shadow: 0 0 20px 1px #D8D8D8;" class=" bod">
+            <RadzenRow RowGap="0" class="tex">
+                <RadzenColumn SizeSM="4">
+@*                     <RadzenText class="tex" style="text-align:center;color:#0B60B0; font-size:30px;padding-bottom:5px;"><b>@device.RunningDevices</b></RadzenText>
+ *@                    <RadzenText class="tex" style="text-align:center;color:#0B60B0; font-size:30px;padding-bottom:5px;"><b>@device.RunningDevices</b></RadzenText>
+
+                    <RadzenText class="tex" style="text-align:center; color:#0B60B0;font-size:20px;">Online Agents</RadzenText>
+
+                </RadzenColumn>
+                <RadzenColumn SizeSM="8">
+                    <div class="lg:block hidden cursor-pointer tex " style="text-align:right;"><svg stroke="currentColor" fill="#0B60B0" stroke-width="0" viewBox="0 0 24 24" class="lg:text-6xl opacity-30 animate-pulse" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-3a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"></path></g></svg></div>
+                </RadzenColumn>
+            </RadzenRow>
+            @* <NavLink class="redzen-link d-block bg-yellow" onclick="ToggleVisibility2()" style="background-color:#02c76c; color:white; text-decoration:none; text-align:center; margin-left:-19px; margin-right:-19px;  margin-bottom:-20px;     margin-top: 56px; overflow: hidden;
+            border-radius: 0 0 3px 3px;" >More Info <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path></svg></span></NavLink> *@
+        </RadzenCard>
+
+    </RadzenColumn>
+
+    <RadzenColumn SizeMD="4" onclick="ToggleVisibility3()">
+        <RadzenCard Style="max-width: 300px; height: 160px!important;background-color:white;box-shadow: 0 0 20px 1px #D8D8D8;" class="bod">
+            <RadzenRow RowGap="0">
+                <RadzenColumn SizeSM="4" class="tex">
+@*                     <RadzenText class="tex" style="text-align:center;color:#0B60B0;font-size:30px;padding-bottom:5px;"><b>@(device.TotalDevices - device.RunningDevices)</b></RadzenText>*@
+                    <RadzenText class="tex" style="text-align:center;color:#0B60B0;font-size:30px;padding-bottom:5px;"><b>@(device.TotalDevices- device.RunningDevices)</b></RadzenText>
+
+                    <RadzenText class="tex" style="text-align:center; color:#0B60B0;font-size:20px;">Offline Agents</RadzenText>
+                </RadzenColumn>
+                <RadzenColumn SizeSM="8">
+                    <div class="lg:block hidden cursor-pointer" style="text-align:right;"><svg stroke="currentColor" fill="#0B60B0" stroke-width="0" viewBox="0 0 16 16" class="lg:text-6xl opacity-30" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"></path></svg></div>
+                </RadzenColumn>
+            </RadzenRow>
+            @* <NavLink class="redzen-link d-block bg-yellow" onclick="ToggleVisibility3()" style="background-color:#02c76c; color:white; text-decoration:none; text-align:center; margin-left:-19px; margin-right:-19px;  margin-bottom:-20px; overflow: hidden;     margin-top: 56px;
+                            border-radius: 0 0 3px 3px;" >More Info <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path></svg></span></NavLink> *@
+        </RadzenCard>
+    </RadzenColumn>
+
+    <RadzenColumn SizeMD="4" onclick="ToggleVisibility()">
+
+        <RadzenCard Style="max-width: 300px ; height: 160px!important;background-color:white;box-shadow: 0 0 20px 1px #D8D8D8;" class="bod">
+            <RadzenRow RowGap="0">
+                <RadzenColumn SizeSM="3" class="tex">
+                     <RadzenText class="tex" style="text-align:center;color:#0B60B0; font-size:30px; padding-bottom:5px;"><b>@Count</b></RadzenText> 
+                    @* <RadzenText class="tex" style="text-align:center;color:#0B60B0; font-size:30px; padding-bottom:5px;"><b>@_device.Count()</b></RadzenText> *@
+                    <RadzenText class="tex" style="text-align:center; color:#0B60B0;font-size:20px;">Installed Agents</RadzenText>
+                </RadzenColumn>
+                <RadzenColumn SizeSM="8">
+                    <div class="lg:block hidden cursor-pointer" style="text-align:right;"><svg stroke="currentColor" fill="#0B60B0" stroke-width="0" viewBox="0 0 512 512" class="lg:text-6xl opacity-30 " height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg></div>
+                </RadzenColumn>
+            </RadzenRow>
+            @* <NavLink class="redzen-link d-block bg-yellow" onclick="ToggleVisibility()" style="background-color:#02c76c; color:white; text-decoration:none; text-align:center; margin-left:-19px; margin-right:-19px;  margin-bottom:-80px;    margin-top: 56px; overflow: hidden;
+            border-radius: 0 0 3px 3px;">More Info <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path></svg></span></NavLink> *@
+        </RadzenCard>
+    </RadzenColumn>
+   
+   
+
+</RadzenRow>
+<hr class="style2" />
+
+
+
+
+
+
+
+
+<div class="installed" id="installed" style="display:none;">
+    <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%">
+
+        <div class="row">
+            <div class="col-6">
+                <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Installed Agents</h3>
+            </div>
+            <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+                <button class="btn  btn-outline-secondary" @* @onclick=@DownloadCsvInstalled *@><i class=" fa fa-solid fa-download"></i></button>
+            </div>
+        </div>
+        <RadzenDataGrid Data="_device" AllowPaging="true" AllowSorting="true" TItem="RegisterDeviceDto"
+                        AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                        PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                        LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions">
+            <Columns>
+                <RadzenDataGridColumn Width="100px" TItem="RegisterDeviceDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                    <Template Context="ctx">
+                        @(_device.ToList()?.IndexOf(ctx) + 1)
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="entity_type" Title="EntityType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="SubType" Title="SubType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="DisplayLabel" Title="DisplayLabel" Width="100px" />
+
+            </Columns>
+        </RadzenDataGrid>
+    </RadzenCard>
+</div>
+
+
+
+
+
+
+<div class="uninstalled" id="online" style="display:block;">
+     <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%">
+    <div class="row">
+            <div class="col-6">
+                <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Online Agents</h3>
+            </div>
+            <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+                <button class="btn  btn-outline-secondary" @* @onclick=@DownloadCsvOnline *@><i class=" fa fa-solid fa-download"></i></button>
+            </div>
+        </div>
+
+        <RadzenDataGrid @ref="_refonn" Data="rundevices" AllowPaging="true" AllowSorting="true" TItem="RegisterDeviceDto"
+                        AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                        PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                        LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions">
+            <Columns>
+                <RadzenDataGridColumn Width="100px" TItem="RegisterDeviceDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                    <Template Context="ctx">
+                        @(rundevices.ToList()?.IndexOf(ctx) + 1)
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="entity_type" Title="EntityType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="SubType" Title="SubType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="DisplayLabel" Title="DisplayLabel" Width="100px" />
+
+            </Columns>
+        </RadzenDataGrid>
+    </RadzenCard>
+</div>
+
+<div class="uninstalled" id="offline" style="display:none;">
+    <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%">
+       
+        <div class="row">
+            <div class="col-6">
+                <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Offline Agents</h3>
+            </div>
+            <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+                <button class="btn  btn-outline-secondary" @* @onclick=@DownloadCsvOffline *@><i class=" fa fa-solid fa-download"></i></button>
+            </div>
+        </div>
+        <RadzenDataGrid @ref=_refOff Data="offdevices" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="RegisterDeviceDto" class="custom-datagrid"
+                        AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                        PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                        LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions">
+            <Columns>
+                <RadzenDataGridColumn Width="100px" TItem="RegisterDeviceDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                    <Template Context="ctx">
+                        @(offdevices.ToList()?.IndexOf(ctx) + 1)
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="entity_type" Title="EntityType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="SubType" Title="SubType" Width="100px" />
+                <RadzenDataGridColumn TItem="RegisterDeviceDto" Property="DisplayLabel" Title="DisplayLabel" Width="100px" />
+
+            </Columns>
+        </RadzenDataGrid>
+    </RadzenCard>
+</div>
+

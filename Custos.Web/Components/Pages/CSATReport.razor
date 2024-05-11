@@ -1,0 +1,108 @@
+﻿@* @page "/csatreports"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+
+@using custos.Models;
+
+<RadzenCard class="mb-1 rz-variant-filled">
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+<RadzenRow>
+<div class="rz-p-2" >
+	<RadzenLabel Text="From" Component="RadzenDatePickerBindValue" Style="margin-right: 8px; vertical-align: middle;" />
+	<RadzenDatePicker @bind-Value=@date1 Placeholder="Select Date" Name="RadzenDatePickerBindValue" ShowCalendarWeek />
+
+	<RadzenLabel Text="To" Component="RadzenDatePickerBindValue" Style="margin-right: 8px; vertical-align: middle;" />
+	<RadzenDatePicker @bind-Value=@date2 Name="RadzenDatePickerBindValue"  Placeholder="Select Date" ShowCalendarWeek />
+            <RadzenButton Shade="Shade.Darker" Click=@(args => OnClick()) Text="Go" Style="background-color: #3498db;" />
+            <RadzenButton Shade="Shade.Darker" Click=@(args => CleanDateRange()) Text="Clear"  Style="background-color: #3498db;" />
+
+</div>
+</RadzenRow>
+</RadzenCard>
+	
+
+<RadzenCard Variant="@variant" class="mt-1 rz-variant-filled" style="max-width: 100%;">
+	<RadzenRow>
+<RadzenColumn Size="12" SizeMD="11">
+			<h3 class="custom-heading">Incident Ticket Feedback</h3>
+
+</RadzenColumn>
+<RadzenColumn Size="12" SizeMD="1">
+            <RadzenButton class=" fa fa-solid fa-download" Click="@DownloadCsv" Style="width: 50px;border: 1px solid ;height:10px;margin-bottom:4px; background-color:#3498db;"></RadzenButton>
+ 
+    </RadzenColumn>
+</RadzenRow>
+
+	<div class="loader" hidden="@(loading?false:true)"></div>
+
+
+        <RadzenGrid Data="@ticketData" AllowPaging="true" PageSize="10" AllowSorting="true"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerPosition="PagerPosition.Bottom" PagerAlign="PagerAlign.Left"
+                    FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                    Responsive="true">
+
+
+         <Columns>
+                <RadzenGridColumn TItem="TicketRecord" Property="Id" Title="Sr.No" Width="5%" TextAlign="TextAlign.Center" />
+                <RadzenGridColumn TItem="TicketRecord" Property="TicketId" Title="Incident Id" Width="5%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="Description" Title="Subject" Width="10%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="SystemId" Title="HostName" Width="10%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="Priority" Title="Priority" Width="10%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="ExpertAssigneeName" Title="Engineer Name" Width="10%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="CurrentStatus_c" Title="Status" Width="5%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="ResolvedDateTime" Title="Resolution Date" Width="10%">
+                    <Template Context="data">
+                        @{
+                            if (data.ResolvedDateTime == null || data.ResolvedDateTime == "")
+                            {
+                                @("<span>-</span>")
+                                ;
+                            }
+                            else
+                            {
+                                if (data.ResolvedDateTime.Length > 10)
+                                {
+                                    @DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(data.ResolvedDateTime)).DateTime.ToString("dd/MM/yyyy")
+                                    ;
+                                }
+                                else
+                                {
+                                    @DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(data.ResolvedDateTime)).DateTime.ToString("dd/MM/yyyy")
+                                    ;
+                                }
+                            }
+                        }
+                    </Template>
+                </RadzenGridColumn>
+                <RadzenGridColumn TItem="TicketRecord" Property="RegisteredForLocation" Title="Location" Width="7%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="feedback_comment" Title="Feedback Comment" Width="7%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="starcount" Title="Rating" Width="6%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="FeedbackCount" Title="Close Count" Width="5%" />
+                <RadzenGridColumn TItem="TicketRecord" Property="LastUpdateTime" Title="Upload At" Width="10%">
+                    <Template Context="data">
+                        @{
+                            if (data.LastUpdateTime == null)
+                            {
+                                @("<span>-</span>")
+                                ;
+                            }
+                            else
+                            {
+                                @Convert.ToDateTime(data.LastUpdateTime).ToString("dd/MM/yyyy")
+                                ;
+                            }
+                        }
+                    </Template>
+                </RadzenGridColumn>
+            </Columns>
+        </RadzenGrid>
+
+
+
+
+</RadzenCard>
+
+ *@

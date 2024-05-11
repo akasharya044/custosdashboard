@@ -1,0 +1,185 @@
+﻿@inherits LayoutComponentBase
+
+
+<RadzenDialog />
+<RadzenNotification />
+<RadzenContextMenu />
+<RadzenTooltip />
+
+
+<div class="sidebar" id="sidebar">
+    <div class="logo-details">
+        <img src="/Assets/custos.png" class="header-brand-img icon nav_logo">
+        <i class="bi bi-list" id="btn" @onclick="ToggleSideBar"></i>
+    </div>
+    <ul class="nav-list" id="navlist">
+        <li>
+            <a href="/dashboard">
+                <i class="bi bi-grid"></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+
+
+        <li>
+            <a href="/system">
+                <i class='bi bi-gear'></i>
+                <span class="links_name">Devices Status</span>
+            </a>
+            <span class="tooltip">System info </span>
+        </li>
+
+
+        <li>
+            <a href="#submenu-5" data-bs-toggle="collapse" aria-expanded="false" class="text-decoration-none collapse-menu">
+                <i class="bi bi-people"></i>
+                <span class="links_name mt-2">
+                    System Info
+                    <span class="menu-arrow bi bi-caret-down"></span>
+                </span>
+            </a>
+
+            <span class="tooltip"> System Info</span>
+            <ul class="collapse list-unstyled ms-3" id="submenu-5">
+                <li><a href="/device" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Device Info</span></a></li>
+                <li><a href="/harddisk" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Harddisk Info</span></a></li>
+                <li><a href="/antivirus" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Antivirus Info</span></a></li>
+
+            </ul>
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <li>
+            <a href="#submenu-1" data-bs-toggle="collapse" aria-expanded="false" class="text-decoration-none collapse-menu">
+                <i class="bi bi-info"></i>
+                <span class="links_name mt-2">
+                    OS Info
+                    <span class="menu-arrow bi bi-caret-down"></span>
+                </span>
+            </a>
+
+            <span class="tooltip"> OS Info</span>
+            <ul class="collapse list-unstyled ms-3" id="submenu-1">
+                <li><a href="/os" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">WinInfo</span></a></li>
+                <li><a href="/oscore" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">WinCoreInfo</span></a></li>
+            </ul>
+        </li>
+     
+        <li>
+            <a href="/background">
+                <i class='bi bi-gear'></i>
+                <span class="links_name">Activity</span>
+            </a>
+            <span class="tooltip">Background Activity</span>
+        </li>
+     
+        <li>
+            <a href="#submenu-2" data-bs-toggle="collapse" aria-expanded="false" class="text-decoration-none collapse-menu">
+                <i class="bi bi-columns"></i>
+                <span class="links_name mt-2">
+                    SelfHeal
+                    <span class="menu-arrow bi bi-caret-down"></span>
+                </span>
+            </a>
+            <span class="tooltip">SelfHeal</span>
+            <ul class="collapse list-unstyled ms-3" id="submenu-2">
+                <li><a href="/summary" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Analytics</span></a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#submenu-3" data-bs-toggle="collapse" aria-expanded="false" class="text-decoration-none collapse-menu">
+                <i class="bi bi-person-circle"></i>
+                <span class="links_name mt-2">
+                    Admin
+                    <span class="menu-arrow bi bi-caret-down"></span>
+                </span>
+            </a>
+            <span class="tooltip">Admin</span>
+            <ul class="collapse list-unstyled ms-3" id="submenu-3">
+                <li><a href="/backdoor" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">BroadCast</span></a></li>
+                <li><a href="/command" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Command Execute</span></a></li>
+                <li><a href="/remotedownload" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Installing</span></a></li>
+
+                <li><a href="/systemhardware" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">System Hardware</span></a></li>
+                <li><a href="/systemsoftware" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">System Software</span></a></li>
+                <li><a href="/port" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Port Info</span></a></li>
+                <li><a href="/services" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Win Services</span></a></li>
+                <li><a href="/install" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Install Software</span></a></li>
+                <li><a href="/ticketinformation" class="text-decoration-none text-white"><i class="bi bi-check2-circle"></i><span class="links_name">Ticket Info</span></a></li>
+               </ul>
+        </li>
+        <li>
+            <a href="/clientinformation">
+                <i class="bi bi-grid"></i>
+                <span class="links_name">UserManagement</span>
+            </a>
+            <span class="tooltip">UserManagement</span>
+        </li>
+
+        <li>
+            <a href="/ticketinformation">
+                <i class="bi bi-grid"></i>
+                <span class="links_name">Tickets</span>
+            </a>
+            <span class="tooltip">Tickets</span>
+        </li>
+    </ul>
+</div>
+<section class="home-section">
+    <div class="content">
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+                    <form class="d-flex">
+                        <a class=" fa fa-solid fa-download" style="color: #2c6b9b; border-style: none; background-color: white; position: relative; left: -49px; font-size: x-large; " href="http://65.2.100.52:1008/CustOsSetup.zip"></a>
+
+                        <a href="javascript:void(0);" @onclick="@OpenSideDialog" class="text-decoration-none text-dark d-flex me-4">
+                            <div style="Width: 30px;height: 28px;" >
+                               
+                                <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31" height="31" viewBox="0 0 31 31">
+                                    <defs>
+                                        <clipPath id="clip-path">
+                                            <rect id="Rectangle_3492" data-name="Rectangle 3492" width="25" height="24" transform="translate(0 0.003)" fill="none" />
+                                        </clipPath>
+                                    </defs>
+                                    <g id="Notification" transform="translate(1 7.997)" style="mix-blend-mode: normal;isolation: isolate">
+                                        <g id="Group_8582" data-name="Group 8582" transform="translate(-1 -1)" clip-path="url(#clip-path)">
+                                            <path id="Path_4580" data-name="Path 4580" d="M.08,69.289c.089-.1.091-.235.148-.349a1.838,1.838,0,0,1,.435-.563,6.178,6.178,0,0,0,2.2-4.8c.008-.87,0-1.74,0-2.61a6.443,6.443,0,0,1,4.9-6.223A.7.7,0,1,1,8.11,56.1a5.066,5.066,0,0,0-3.85,4.867c-.009.827,0,1.653,0,2.48A7.612,7.612,0,0,1,1.611,69.4c-.091.081-.175.162-.123.3s.168.159.3.159H16.927c.13,0,.247-.01.3-.152s-.036-.229-.13-.312a7.535,7.535,0,0,1-1.851-2.414.708.708,0,0,1,.268-.99.7.7,0,0,1,.973.369A6.416,6.416,0,0,0,18.1,68.413a1.621,1.621,0,0,1-1.047,2.831c-1.356.008-2.712,0-4.068,0-.149,0-.212.029-.262.193a3.4,3.4,0,0,1-2.9,2.555c-.016,0-.028.025-.043.039H8.87c-.029-.073-.1-.045-.15-.057A3.448,3.448,0,0,1,5.991,71.39c-.036-.129-.1-.145-.211-.144q-2.023.005-4.045,0A1.621,1.621,0,0,1,.149,70.091c-.017-.05,0-.121-.069-.149Zm7.337,1.962a2.063,2.063,0,0,0,2.1,1.383,2.011,2.011,0,0,0,1.78-1.383Z" transform="translate(0.782 -50.892)" fill="#010101" />
+                                        </g>
+                                        <circle id="Ellipse_11" data-name="Ellipse 11" cx="10" cy="10" r="10" transform="translate(10 -7.997)" fill="#e21a22" />
+                                        <text data-name="0" transform="translate(17 6.003)" fill="#fff" font-size="12" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="0" y="0">@Notcount</tspan></text>
+                                    </g>
+                                </svg> 
+                            </div>
+                        </a>
+                        <a href="logout">
+                            <RadzenImage Path="images/logout.svg" Style="Width: 30px;height: 28px;" class="ms-3"></RadzenImage>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="dashboard-content mt-1 p-3">
+            @Body
+        </div>
+    </div>
+</section>
+
+
+

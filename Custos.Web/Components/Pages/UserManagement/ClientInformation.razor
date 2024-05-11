@@ -1,0 +1,46 @@
+﻿@page "/clientinformation"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@using custos.Models.RbacModel
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+	<div class="row">
+		<div class="col-6">
+			<h3 style="margin-bottom:-2.5rem;" class="custom-heading">Client Information</h3>
+		</div>
+		<div class="col-6" style=" text-align:right">
+			<button class="btn btn-outline-secondary" @onclick=@AddClientInformation><i class=" fa fa-solid fa-add"></i>Add</button>
+
+		</div>
+	</div>
+	<br />
+
+	<RadzenDataGrid Data="clientDTOs" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="ClientDTO" class="custom-datagrid"
+					AllowFiltering="true" FilterMode="FilterMode.Advanced"
+					PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+					LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" @ref="grid" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+		<Columns>
+			<RadzenDataGridColumn Width="50px" TItem="ClientDTO" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+				<Template Context="ctx">
+					@(clientDTOs.ToList()?.IndexOf(ctx) + 1)
+				</Template>
+			</RadzenDataGridColumn>
+
+			<RadzenDataGridColumn TItem="ClientDTO" Property="Name" Title="Name" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="MobileNo" Title="MobileNo" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="Email" Title="Email" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="fullAdd" Title="Address" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="City" Title="City" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="Country" Title="Country" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="StateName" Title="State" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="Pincode" Title="Pincode" />
+			<RadzenDataGridColumn TItem="ClientDTO" Property="" Title="View" Width="100px" TextAlign="TextAlign.Center">
+				@* <Template Context="context">
+					<a @onclick="@(args=>ShowList(context.Id))" class="text-decoration-none  fw-bold" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true"></i>View</a>
+				</Template> *@
+			</RadzenDataGridColumn>
+
+		</Columns>
+	</RadzenDataGrid>
+
+</RadzenCard>

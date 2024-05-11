@@ -1,0 +1,52 @@
+
+@page "/ticketinformation"
+@inject IJSRuntime JSRuntime
+@using custos.Models;
+@using custos.Models.Tickets
+@rendermode InteractiveServer
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+	<div class="row">
+	<div class="col-6">
+		<h3 style="margin-bottom:-2.5rem;" class="custom-heading">Ticket Information</h3>
+	</div>
+		<div class="col-6" style=" text-align:right">
+					<button class="btn btn-outline-secondary" @onclick=@AddTicket><i class=" fa fa-solid fa-add"></i>Add</button>
+
+	</div>
+	</div>
+	<br />
+
+	<RadzenDataGrid Data="ticketRecordDtos" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="TicketRecordDto" class="custom-datagrid"
+					AllowFiltering="true" FilterMode="FilterMode.Advanced"
+					PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+					LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" @ref="grid" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+		<Columns>
+			<RadzenDataGridColumn Width="50px" TItem="TicketRecordDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+				<Template Context="ctx">
+					@(ticketRecordDtos.ToList()?.IndexOf(ctx) + 1)
+				</Template>
+			</RadzenDataGridColumn>
+			 
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="Description" Title="Description" />
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="CategoryName" Title="Category" />
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="SubCategoryName" Title="SubCategory" />
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="AreaName" Title="Area" />
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="TicketStatus" Title="TicketStatus" />
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="RequestedByPerson" Title="RequestedByPerson"></RadzenDataGridColumn>
+			<RadzenDataGridColumn TItem="TicketRecordDto" Property="SystemId" Title="Host Name" />
+
+			<RadzenDataGridColumn TItem="TicketRecordDto" Width="50px">
+
+				<Template Context="UpdateTicketDto">
+					<RadzenButton Icon="edit" Click="@(args => EditTicket(UpdateTicketDto.Id))"></RadzenButton>
+
+				</Template>
+
+			</RadzenDataGridColumn>
+		
+			
+		</Columns>
+	</RadzenDataGrid>
+	
+</RadzenCard>

@@ -1,0 +1,50 @@
+﻿@page "/systemhardware"
+@using custos.Models.DTO;
+@rendermode InteractiveServer
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<div class="notification-container">
+    <RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+</div>
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="" class="custom-heading">System Hardware</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+            
+        </div>
+    </div>
+
+    <div class="loader" hidden="@(loading?false:true)"></div>
+
+
+    <RadzenDataGrid Data="_SystemHardware" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="HardwareInformationDto" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+        <Columns>
+            <RadzenDataGridColumn Width="30%" TItem="HardwareInformationDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                <Template Context="ctx">
+                    @(_SystemHardware.ToList()?.IndexOf(ctx) + 1)
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="HardwareInformationDto" Property="SystemId" Title="UserId" Width="150px" />
+
+            <RadzenDataGridColumn TItem="HardwareInformationDto" Property="" Title="View" Width="100px" TextAlign="TextAlign.Center">
+                <Template Context="context">
+                    <a @onclick="@(args=>ShowEvenList(context.SystemId))" class="text-decoration-none  fw-bold" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true"></i>View</a>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</RadzenCard>
+
+<script>
+    window.openFilePicker = function (id) {
+        document.getElementById(id).click();
+    }
+</script>

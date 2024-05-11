@@ -1,0 +1,77 @@
+﻿@page "/UpdateTicket/{id:int}"
+@inject IJSRuntime JSRuntime
+@using custos.Models;
+@using custos.Models.Tickets
+@rendermode InteractiveServer
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+
+<div class="bg-white ps-4 pt-2" style="height: 50px;">
+    <h5 class="fw-bold d-inline header-content">Update Ticket</h5>
+    <span><a href="/ticketinformation"><RadzenButton class="float-end primary-btns" Icon="arrow_circle_left" Text="Back to list" /></a></span>
+</div>
+
+<RadzenCard>
+    <RadzenTemplateForm TItem="TicketUpdateDto" Data=@UpdateTicketDto>
+        <div class="card-body mt-3">
+            <RadzenRow>
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                      <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Category<span style="color:red">*</span></RadzenText>
+                     <RadzenTextBox id="Id" Name="Id" @bind-Value=@UpdateTicketDto.CategoryName    TextProperty="CategoryName" Disabled="true" ValueProperty="Id" AllowClear=true  Style="width: 70%;" class="mss-content" />
+                    </div>
+                </RadzenColumn>
+
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">SubCategory<span style="color:red">*</span></RadzenText>
+                        <RadzenTextBox id="Id" Disabled="true" Name="Id" @bind-Value=@UpdateTicketDto.SubCategoryName  TextProperty="SubCtageoryName" ValueProperty="Id" DisabledProperty="true" AllowClear=true Style="width: 100%; max-width: 400px;" />
+                    </div>
+                </RadzenColumn>
+                  <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Area<span style="color:red">*</span></RadzenText>
+                        <RadzenTextBox @bind-Value="@UpdateTicketDto.AreaName" Disabled="true"  TextProperty="AreaName" ValueProperty="Id" DisabledProperty="true"  AllowClear="true" Style="width: 100%; max-width: 400px;" />
+                    </div>
+                </RadzenColumn>
+
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">System Id <span style="color:red">*</span></RadzenText>
+                        <RadzenTextBox @bind-Value="@UpdateTicketDto.SystemId"  Disabled="true"  AllowClear="true" Style="width: 100%; max-width: 400px;" />
+                    </div>
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Requested By Person<span style="color:red">*</span></RadzenText>
+                        <RadzenTextBox @bind-Value="@UpdateTicketDto.RequestedByPerson"   Disabled="true"  AllowClear="true" Style="width: 100%; max-width: 400px;" />
+                    </div>
+                  </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Ticket Status<span style="color:red">*</span></RadzenText>
+                       <RadzenDropDown  ValueProperty="Name" TextProperty="Name" @bind-Value="@UpdateTicketDto.TicketStatus" Data="_ticketStatusList" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+
+         
+
+                     </div>
+                </RadzenColumn>
+
+                <RadzenColumn Size="12" SizeMD="6">
+                    <div class="form-group mt-2">
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Description<span style="color:red">*</span></RadzenText>
+                        <RadzenTextBox @bind-Value="@UpdateTicketDto.Description" Disabled="true" Style="width: 100%; height: 150px;" class="mss-content" />
+                    </div>
+                </RadzenColumn>
+            </RadzenRow>
+            <div class="float-end mt-5">
+                <RadzenStack Orientation="Orientation.Horizontal">
+                <RadzenButton style="width: 160px" class="primary-btns" Text="Save" ButtonType="ButtonType.Submit"Click="UpdateUserData" />
+                </RadzenStack>
+            </div>
+
+     
+        </div>
+    </RadzenTemplateForm>
+</RadzenCard>

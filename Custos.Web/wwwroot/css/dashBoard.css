@@ -1,0 +1,297 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: rgba(33, 40, 64, 1);
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+}
+
+    .sidebar.open {
+        width: 250px;
+        background: rgba(33, 40, 64, 1);
+    }
+
+    .sidebar .logo-details {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+        .sidebar .logo-details .icon {
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar .logo-details .logo_name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+    .sidebar.open .logo-details .icon,
+    .sidebar.open .logo-details .logo_name {
+        opacity: 1;
+    }
+
+    .sidebar .logo-details #btn {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        transition: all 0.4s ease;
+        font-size: 23px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.open .logo-details #btn {
+        text-align: right;
+    }
+
+    .sidebar i {
+        color: #fff;
+        height: 60px;
+        min-width: 50px;
+        font-size: 28px;
+        /* text-align: center; */
+        line-height: 60px;
+    }
+
+    .sidebar .nav-list {
+        margin-top: 20px;
+        height: 100%;
+        padding-left: 1rem;
+    }
+
+    .sidebar li {
+        position: relative;
+        margin: 8px 0;
+        list-style: none;
+    }
+
+        .sidebar li .tooltip {
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 15px);
+            z-index: 3;
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: 0s;
+        }
+
+        .sidebar li:hover .tooltip {
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    .sidebar.open li .tooltip {
+        display: none;
+    }
+
+    .sidebar li a {
+        margin-left: -24px;
+        padding-left: 24px;
+        display: flex;
+        display: flex;
+        height: 36px;
+        width: 100%;
+        border-radius: 12px;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.4s ease;
+        background: rgba(33, 40, 64, 1);
+    }
+
+        .sidebar li a:hover {
+            color: #0B60B0;
+        }
+
+        .sidebar li a .links_name {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 400;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+    .sidebar.open li a .links_name {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar li a:hover .links_name,
+    .sidebar li a:hover i {
+        transition: all 0.4s ease;
+        color: #0B60B0;
+    }
+
+    .sidebar li i {
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        border-radius: 12px;
+    }
+
+#sidebar > ul > li > a:active, #sidebar > ul > li > a:focus, #sidebar > ul > li > a:hover {
+    color: #3bafda;
+    text-decoration: none;
+}
+
+.home-section {
+    position: relative;
+    background: rgba(239, 239, 239, 1);
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.sidebar.open ~ .home-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.home-section .text {
+    display: inline-block;
+    color: rgba(33, 40, 64, 1);
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px
+}
+
+@media (max-width: 420px) {
+    .sidebar li .tooltip {
+        display: none;
+    }
+}
+
+.header-brand-img {
+    height: 2.5rem;
+    line-height: 2rem;
+    vertical-align: middle;
+    margin-left: 3.5rem;
+}
+
+.nav_logo {
+    height: 1.9rem;
+    line-height: 2rem;
+    margin-left: 0.5rem;
+}
+
+.create_Btn {
+    border-radius: 20px;
+    background: red;
+    border: 1px solid red;
+    transition: background;
+    box-shadow: none;
+}
+
+    .create_Btn:hover, .create_Btn:focus {
+        background: white;
+        color: red;
+        border: 1px solid red;
+    }
+
+.search-nav {
+    width: 196px;
+    height: 30px;
+    background: #F1F5F7 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    color: #777777;
+    appearance: none;
+    background-size: 14px;
+    /*background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;*/
+    background-repeat: no-repeat;
+    background-position: 160px;
+    padding-right: 15px;
+}
+
+.unread-circle {
+    width: 9px;
+    height: 9px;
+    background-color: green;
+    border-radius: 50%;
+    margin-left: -5px;
+}
+
+.red-circle {
+    width: 13px;
+    height: 13px;
+    background-color: red;
+    color: white;
+    border-radius: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-left: -10px;
+}
+
+.profile_img {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+}
+
+.nav-list li a.active {
+    background-color: #0B60B0;
+    color: white;
+}
+
+.menu-arrow:before {
+    content: "\f22c";
+}
+
+[dir=rtl] .menu-arrow:before {
+    content: "\f22c";
+}
+
+li > a[aria-expanded=true] > span.links_name > span.menu-arrow {
+    transform: rotate(0deg)
+}
+
+li.menuitem-active > a:not(.collapsed) > span.links_name > span.menu-arrow {
+    transform: rotate(0deg)
+}
+
+.menu-arrow {
+    transition: transform .3s;
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+    transform: rotate(-90deg);
+}

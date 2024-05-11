@@ -1,0 +1,60 @@
+﻿@page "/command"
+@using custos.Models.DTO
+@rendermode InteractiveServer
+
+
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Command Activity</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+            @*<button class="btn  btn-outline-secondary" @onclick=@DownloadCsvBackground><i class=" fa fa-solid fa-download"></i></button>*@
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="loader" hidden="@(loading?false:true)"></div>
+
+
+    <div class=" row">
+        
+        <div class="col-4">
+            <RadzenLabel Text="Select SystemId" Component="DropDownBindValue" Style="margin-right: 8px; vertical-align: middle;" />
+            <RadzenDropDown Change="@(async () => PortLoad(singleValue))" @bind-Value=@singleValue Data=@systemid Style="width: 100%; max-width: 400px;" Name="DropDownBindValue" Placeholder="Select SystemId" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" />
+        </div>
+
+        <div class="col-4">
+            <RadzenLabel Text="Select Command" Component="DropDownBindValue" Style="margin-right: 8px; vertical-align: middle;" />
+            <RadzenDropDown Change="@(async ()=> GetCmdData(commandValue))" ValueProperty="commandname" TextProperty="commandname" @bind-Value=@commandValue Data=@_commanddata Style="width: 100%; max-width: 400px;" Name="DropDownBindValue" Placeholder="Select Command" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" />
+        </div>
+
+        <div class="col-4">
+            <RadzenLabel Text="Select Port" Component="DropDownBindValue" Style="margin-right: 8px; vertical-align: middle;" />
+            <RadzenDropDown  ValueProperty="ProcessId" TextProperty="RemotePort" @bind-Value=@PortValue Data=@_port Style="width: 100%; max-width: 400px;" Name="DropDownBindValue" Placeholder="Select Port" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" />
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-12">
+            
+            <RadzenButton Text="Send" Click="@((args) =>RabbitSendCommand(comid , singleValue , "" , "", commandargument ,  PortValue , null))" ButtonStyle="ButtonStyle.Success" />
+        </div>
+    </div>
+
+   
+
+   
+
+</RadzenCard>
+

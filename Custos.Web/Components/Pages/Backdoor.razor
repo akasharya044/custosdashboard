@@ -1,0 +1,64 @@
+﻿@page "/backdoor"
+@using custos.Models.DTO
+@rendermode InteractiveServer
+
+
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="margin-bottom:-2.5rem;" class="custom-heading">BroadCast</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+            @*<button class="btn  btn-outline-secondary" @onclick=@DownloadCsvBackground><i class=" fa fa-solid fa-download"></i></button>*@
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    <div class="loader" hidden="@(loading?false:true)"></div>
+
+
+    <div class=" row">
+        <div class="col-12">
+
+            <RadzenLabel Text="SystemId" Component="DropDownMultipleChips" Style="margin-right: 8px; vertical-align: middle;" />
+            <RadzenDropDown  @bind-Value="@values" Data="@systemid" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" Multiple="true" AllowClear="true" Placeholder="Select systemId" Chips="true" Style="width: 100%; max-width: 400px;" />
+        </div>
+       
+        
+
+        
+    </div>
+
+    <br />
+    <br />
+    <br />
+ 
+    <div class="row">
+       @*  <div class="col-6">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter Command Here (CMD Only)</RadzenText>
+                <RadzenTextArea Placeholder="Enter Command Here" class="w-100" aria-label="TextArea with placeholder"  @bind-Value="@cmdmessage" />
+                <RadzenButton Text="Execute" Click="@((args) =>SendCommandMessage(values))" ButtonStyle="ButtonStyle.Success" />
+                <RadzenButton  Text="Clear" ButtonStyle="ButtonStyle.Dark" />
+            </RadzenCard>
+        </div> *@
+
+        <div class="col-12">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter Message Here</RadzenText>
+                <RadzenTextArea Placeholder="Enter Broadcast Message Here" class="w-100" aria-label="TextArea with placeholder" @bind-Value="@message" />
+                <RadzenButton Text="Send" Click="@((args) =>SendMessage(values))" ButtonStyle="ButtonStyle.Success" />
+                <RadzenButton Text="Clear" ButtonStyle="ButtonStyle.Dark" />
+            </RadzenCard>
+        </div>
+    </div>
+
+</RadzenCard>
+

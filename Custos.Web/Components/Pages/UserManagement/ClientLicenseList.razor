@@ -1,0 +1,44 @@
+﻿@page "/clientlicenselist/{id}"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@using custos.Models.RbacModel
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+
+
+	<div class="col-12" style="text-align:right; margin-bottom:5px">
+		<a class="btn btn-outline-secondary" href="clientinformation"><i class="fa fa-solid fa-backward"></i> Back Client Information</a>
+	</div>
+
+	<RadzenDataGrid Data="clientLicenses" AllowPaging="true" PageSize="10" AllowSorting="true"
+					TItem="ClientLicenseDTO" class="custom-datagrid"
+					AllowFiltering="true" FilterMode="FilterMode.Advanced"
+					PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+					LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+
+		<Columns>
+			<RadzenDataGridColumn Width="50px" TItem="ClientLicenseDTO" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+				<Template Context="ctx">
+					@(clientLicenses.ToList()?.IndexOf(ctx) + 1)
+				</Template>
+			</RadzenDataGridColumn>
+
+			<RadzenDataGridColumn TItem="ClientLicenseDTO" Property="UserName" Title="User" Width="100px" />
+			<RadzenDataGridColumn TItem="ClientLicenseDTO" Property="Key" Title="Key" Width="100px" />
+			<RadzenDataGridColumn TItem="ClientLicenseDTO" Property="ActivatedOn" Title="Activated Date" Width="100px" >
+				<Template Context="clientLicenses">
+					@if(clientLicenses.ActivatedOn==null)
+					{
+						<span></span>
+					}
+					else
+					{
+						@Convert.ToDateTime(clientLicenses.ActivatedOn).ToString("dd-MM-yyyy")
+					}
+				</Template>
+				</RadzenDataGridColumn>
+			<RadzenDataGridColumn TItem="ClientLicenseDTO" Property="Active" Title="Active" Width="100px" />
+
+		</Columns>
+	</RadzenDataGrid>
+</RadzenCard>

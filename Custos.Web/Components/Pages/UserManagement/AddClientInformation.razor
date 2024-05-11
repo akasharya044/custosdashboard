@@ -1,0 +1,91 @@
+﻿@page "/addclientinformation"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@using custos.Models.RbacModel
+
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+
+
+<div class="bg-white ps-4 pt-2" style="height: 50px;">
+	<h5 class="fw-bold d-inline header-content">Add Client Information</h5>
+	<span><a href="/clientinformation"><RadzenButton class="float-end primary-btns" Icon="arrow_circle_left" Text="Back to list" /></a></span>
+</div>
+
+<RadzenCard>
+	<RadzenTemplateForm TItem="ClientDTO" Data=@clientDTO Submit="@UpsertData">
+		<div class="card-body mt-3">
+			<RadzenRow>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Name<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value=@clientDTO.Name AllowClear=true Style="width: 100%;  max-width: 400px;" class="mss-content" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Email<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value=@clientDTO.Email AllowClear=true Style="width: 100%;  max-width: 400px;" class="mss-content" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">MobileNo<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value="@clientDTO.MobileNo" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Address Line 1<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value=@clientDTO.Address1 AllowClear=true Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header"> Address Line 2</RadzenText>
+						<RadzenTextBox @bind-Value=@clientDTO.Address2 AllowClear=true Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">City<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value="@clientDTO.City" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">State<span style="color:red">*</span></RadzenText>
+						<RadzenDropDown @bind-Value="@clientDTO.State" Data="@_state" TextProperty="Name" ValueProperty="Id" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Country<span style="color:red">*</span></RadzenText>
+						<RadzenTextBox @bind-Value="@clientDTO.Country" Disabled=true Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">Pincode<span style="color:red">*</span></RadzenText>
+						<RadzenNumeric @bind-Value="@clientDTO.Pincode" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+				
+				<RadzenColumn Size="12" SizeMD="4">
+					<div class="form-group mt-2">
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H1" class="d-flex form-element-header">No Of User<span style="color:red">*</span></RadzenText>
+						<RadzenNumeric @bind-Value="@clientDTO.NoKey" AllowClear="true" Style="width: 100%; max-width: 400px;" />
+					</div>
+				</RadzenColumn>
+
+			</RadzenRow>
+			<div class="float-end mt-5">
+				<RadzenStack Orientation="Orientation.Horizontal">
+					<RadzenButton style="width: 160px" class="primary-btns" Text="Save" ButtonType="ButtonType.Submit" />
+				</RadzenStack>
+			</div>
+		</div>
+	</RadzenTemplateForm>
+</RadzenCard>

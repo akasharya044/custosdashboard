@@ -1,0 +1,86 @@
+﻿@page "/csatupload"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@inject DialogService DialogService
+@rendermode InteractiveServer
+
+@using custos.Web.Components.Pages
+
+
+@* <script>
+	window.openFilePicker = function (id) {
+		document.getElementById(id).click();
+	}
+</script>
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; height:600px">
+<RadzenRow>
+	<RadzenColumn Size="12" SizeMD="11">
+		<h3 class="custom-heading">Solution Management (Custos)</h3>
+
+</RadzenColumn>
+</RadzenRow>
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<div class="notification-container">
+	<RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+</div>
+
+
+	<div class="header-content">
+		<div class="left-content">
+			<span class="csatup">UPLOAD CSAT DATA</span>
+		</div>
+		<div class="right-content">
+			<div class="download-box">
+				<a href="/Assets/sample-sheet.xlsx" download="sample_sheet.xlsx">
+					<RadzenButton Style="background-color:#4d9ed5;">
+
+						<RadzenIcon Icon="download" />
+					</RadzenButton>
+				</a>
+			</div>
+		</div>
+	</div>
+	<RadzenCard Class="rz-my-12 rz-mx-auto" Style="max-width: 800px; height: 70px; margin-top: 100px; background-color:#4d9ed5;">
+		<RadzenRow RowGap="0">
+			<RadzenColumn SizeSM="12">
+				<RadzenText Text="Excel file must follow below format:" Style="color: white; font-weight: bold;" />
+				<RadzenText Text="[Incident Id, Severity, Subject, Location, Region, User Name, System ID, Engineer Name, Status, Resolution Date]" Style="color:white;" />
+			</RadzenColumn>
+		</RadzenRow>
+	</RadzenCard>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br /> *@
+
+
+	@* <div style="text-align: center; margin-top: -180px;"> *@
+		@* <p style="/* display: inline-block; */margin-right: 220px;font-size:24px;font-family:Calibri;font-weight:bold;/* margin-bottom: 0px; */position: relative;top: 38px;">Upload:</p> *@
+	@* 	<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Wrap="FlexWrap.Wrap" class="but justify-content-end" Style="text-align:left;">
+			<InputFile OnChange="OnChange" id="upload" style="display:none" accept=".xls, .xlsx" />
+			
+
+		</RadzenStack>
+		<button class="btn btn-outline-secondary m-1" @onclick="OpenFilePicker" style="margin: auto; z-index:1">@(docname != "" ? @docname : "Choose File")</button>
+		<RadzenButton class="btn btn-primary m-1"ButtonStyle="ButtonStyle.Primary" @onclick="uploadFile" style=" z-index:1; color: #4d9ed5, ButtonText:white">Upload</RadzenButton>
+
+	</div>
+	<br />
+	<div style="text-align:center; margin-top: 10px;">
+		
+			<span style="color: red;"> * NOTE: File must be a XLS or XLSX</span>
+		
+	</div>
+
+</RadzenCard>
+ *@
+
+
+
+
+
+

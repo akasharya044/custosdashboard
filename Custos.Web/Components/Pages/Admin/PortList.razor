@@ -1,0 +1,60 @@
+﻿@page "/portlist/{user}"
+@using custos.Models.DTO;
+@rendermode InteractiveServer
+
+<RadzenDialog @rendermode="RenderMode.InteractiveServer"></RadzenDialog>
+<div class="notification-container">
+    <RadzenNotification @rendermode="RenderMode.InteractiveServer"></RadzenNotification>
+</div>
+
+
+
+<RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="margin-bottom:-2.5rem;" class="custom-heading">@user PortActivity</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+            <a class="btn  btn-outline-secondary" href="port"><i class="fa fa-solid fa-backward"></i> Back To Port Activity</a>
+            <button class="btn  btn-outline-secondary" @onclick=@DownloadCsvBackground><i class=" fa fa-solid fa-download"></i></button>
+        </div>
+    </div>
+
+    <div class="loader" hidden="@(loading?false:true)"></div>
+
+
+    <RadzenDataGrid Data="_portlist" AllowPaging="true" PageSize="10" AllowSorting="true" TItem="PortInformationDto" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+        <Columns>
+            <RadzenDataGridColumn Width="30%" TItem="PortInformationDto" Property="Sno" Title="Sr.No" Filterable=false Sortable=true>
+                <Template Context="ctx">
+                    @(_portlist.ToList()?.IndexOf(ctx) + 1)
+                </Template>
+            </RadzenDataGridColumn>
+            
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="LocalEndpoint" Title="LocalEndPoint" Width="150px" />
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="LocalPort" Title="LocalPort" Width="50%" />
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="RemoteEndpint" Title="RemoteEndpoint" Width="100%" />
+
+
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="RemotePort" Title="RemotePort" Width="100%" />
+
+
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="State" Title="State" Width="100%" />
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="ProcessId" Title="ProcessId" Width="100%" />
+
+            <RadzenDataGridColumn TItem="PortInformationDto" Property="TimeStamp" Title="UpdateTime" Width="100%" />
+
+
+        </Columns>
+    </RadzenDataGrid>
+</RadzenCard>
+
+<script>
+    window.openFilePicker = function (id) {
+        document.getElementById(id).click();
+    }
+</script>

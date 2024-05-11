@@ -1,0 +1,39 @@
+﻿
+
+@page "/antivirus"
+@using custos.Models.DTO
+@rendermode InteractiveServer
+
+
+ <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="margin-bottom:-2.5rem;" class="custom-heading">Antivirus Information</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+
+            <button class="btn  btn-outline-secondary" @onclick=@DownloadCsvBackground><i class=" fa fa-solid fa-download"></i></button>
+        </div>
+    </div>
+
+    <RadzenDataGrid Data="_antivirus" AllowPaging="true" PageSize="10" AllowSorting="true"
+                    TItem="AntivirusDetailsDto" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+
+        <Columns>
+            
+            
+            
+            <RadzenDataGridColumn TItem="AntivirusDetailsDto" Property="SystemId" Title="SystemId" Width="100%" />
+            <RadzenDataGridColumn TItem="AntivirusDetailsDto" Property="AntivirusName" Title="AntivirusName" Width="100%" />
+            <RadzenDataGridColumn TItem="AntivirusDetailsDto" Property="TimeStamp" Title="TimeStamp" Width="100%" />
+            
+
+            
+           
+
+        </Columns>
+    </RadzenDataGrid> 
+ </RadzenCard> 

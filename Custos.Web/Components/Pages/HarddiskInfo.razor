@@ -1,0 +1,46 @@
+﻿@page "/harddisk"
+@using custos.Models.DTO
+@rendermode InteractiveServer
+
+
+
+ <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 100%; margin-top:0px !important;">
+   <div class="row">
+    <div class="col-6">
+        <h3 style="margin-bottom:-2.5rem;" class="custom-heading">HardDisk Information</h3>
+        </div>
+        <div class="col-6" style="text-align:right; margin-bottom: 5px;">
+            
+            <button class="btn  btn-outline-secondary" @onclick=@DownloadCsvHardware><i class=" fa fa-solid fa-download"></i></button> 
+            </div>
+    </div> 
+   <div class="loader" hidden="@(loading?false:true)"></div>
+    <RadzenDataGrid Data="_harddisk" AllowPaging="true" PageSize="10" AllowSorting="true"
+                    TItem="HarddiskDetailsDto" class="custom-datagrid"
+                    AllowFiltering="true" FilterMode="FilterMode.Advanced"
+                    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                    LogicalFilterOperator="LogicalFilterOperator.Or" PageSizeOptions="@pageSizeOptions" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive">
+
+        <Columns>
+
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="SystemId" Title="SystemId" Width="100%" />
+
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="DriveName" Title="DriveName" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="DriveType" Title="DriveType" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="DriveFormat" Title="DriveFormat" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="SerialNumber" Title="SerialNumber" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="TotalSize" Title="TotalSize" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="FreeSpace" Title="FreeSpace" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="AvailableFreeSpace" Title="AvailableFreeSpace" Width="100%" />
+
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="NonSystemDriveName" Title="NonSystemDriveName" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="NonSystemTotalSpace" Title="NonSystemTotalSpace" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="NonSystemFreeSpace" Title="NonSystemFreeSpace" Width="100%" />
+            <RadzenDataGridColumn TItem="HarddiskDetailsDto" Property="TimeStamp" Title="TimeStamp" Width="100%" />
+
+
+
+
+        </Columns>
+    </RadzenDataGrid> 
+ </RadzenCard> 

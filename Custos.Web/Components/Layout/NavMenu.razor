@@ -1,0 +1,228 @@
+﻿@rendermode InteractiveServer
+
+
+<div class="top-row navbar navbar-light bg-white">
+    <div class="container-fluid bg-white">
+        <a class="cursor-point" href="dashboard">
+            <img src="/Assets/custos.png" style="height:65px; position:relative; left:47px;" />
+
+        </a>
+
+    </div>
+
+</div>
+<hr />
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+
+
+    <nav class="flex-column">
+        <RadzenPanelMenu Multiple=false>
+            <div class="nav-item ps-2 pe-2">
+                <NavLink class="nav-link text navtxt" href="dashboard" Match="NavLinkMatch.All">
+                    <RadzenIcon Icon="account_balance" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px; " /> Dashboard
+                </NavLink>
+            </div>
+
+            <div class="nav-item ps-2 pe-2">
+                    <NavLink class="nav-link text" href="system">
+                        <RadzenIcon Icon="account_circle" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />Device Info
+                    </NavLink>
+                </div>
+
+
+
+
+
+            <div class="nav-item">
+                <ul class="ps-2 pe-2">
+                    <li class="submenu8">
+                        <NavLink class="nav-link text" onclick="toggleSubMenu7('advancedSubMenu7')">
+
+                            <RadzenIcon Icon="build" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />OS Info <i class="fa fas fa-angle-double-down"></i>
+                        </NavLink>
+                        <ul class="sub-menu ps-2 pe-2" id="advancedSubMenu7">
+
+                            <li>
+                                <NavLink class="nav-link text sub" href="os">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i>WinInfo
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="oscore">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i>WincoreInfo
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="nav-item">
+                <ul class="ps-2 pe-2">
+                    <li class="submenu9">
+                        <NavLink class="nav-link text" onclick="toggleSubMenu9('advancedSubMenu9')">
+
+                            <RadzenIcon Icon="build" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />System Info <i class="fa fas fa-angle-double-down"></i>
+                        </NavLink>
+                        <ul class="sub-menu ps-2 pe-2" id="advancedSubMenu9">
+
+                            <li>
+                                <NavLink class="nav-link text sub" href="device">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i>DeviceInfo
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="harddisk">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i>HarddiskInfo
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="antivirus">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i>AntivirusInfo
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
+
+            @*<div class="nav-item ps-2 pe-2">
+                    <NavLink class="nav-link text" href="harddisk">
+                        <RadzenIcon Icon="description" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />Harddisk Info
+                    </NavLink>
+                </div>*@
+
+            @*<div class="nav-item ps-2 pe-2">
+                    <NavLink class="nav-link text" href="antivirus">
+                        <RadzenIcon Icon="description" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />Antivirus Info
+                    </NavLink>
+                </div>*@
+            <div class="nav-item ps-2 pe-2">
+                <NavLink class="nav-link text" href="background">
+                    <RadzenIcon Icon="description" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />BackGround Activity
+                </NavLink>
+            </div>
+
+            @*<div class="nav-item ps-2 pe-2">
+                    <NavLink class="nav-link text sub" href="questionslanding">
+                        <i class=" fa fasu  fa-solid fa-arrow-right"></i> Questions
+                    </NavLink>
+                </div>*@
+
+
+            <div class="nav-item">
+                <ul class="ps-2 pe-2">
+                    <li class="submenu2">
+                        <NavLink class="nav-link text" onclick="toggleSubMenu2('advancedSubMenu2')">
+                            <RadzenIcon Icon="face" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />SelfHeal <i class="fa fas fa-angle-double-down"></i>
+                        </NavLink>
+                        <ul class="sub-menu ps-2 pe-2" id="advancedSubMenu2">
+                            <li>
+
+                                @*<div class="nav-item sub3">
+                                        <ul class="ps-2 pe-2">
+
+                                            <NavLink class="nav-link text" href="summary">
+                                                <i class=" fa fasu  fa-solid fa-arrow-right"></i> Analytics
+                                            </NavLink>
+                                        </ul>
+                                    </div>*@
+                                <NavLink class="nav-link text sub" href="summary">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Analytics
+                                </NavLink>
+
+                            </li>
+
+                            @*<li>
+                                <NavLink class="nav-link text sub" href="questionslanding">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Questions
+                                </NavLink>
+                            </li>*@
+
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+            <div class="nav-item">
+                <ul class="ps-2 pe-2">
+                    <li class="submenu1">
+                        <NavLink class="nav-link text" onclick="toggleSubMenu('advancedSubMenu')">
+
+                            <RadzenIcon Icon="build" class="bi" style="font-weight: 800; margin-right: 9px; padding-right: 3px;" />Admin <i class="fa fas fa-angle-double-down"></i>
+                        </NavLink>
+                        <ul class="sub-menu ps-2 pe-2" id="advancedSubMenu">
+                            <li>
+                                <NavLink class="nav-link text sub" href="backdoor">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> BroadCast
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="command">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Command Execute
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="remotedownload">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Installing
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="systemhardware">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> System Hardware
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="systemsoftware">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> System Software
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="services">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Win Services
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link text sub" href="install">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Install Software
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink class="nav-link text sub" href="port">
+                                    <i class=" fa fasu  fa-solid fa-arrow-right"></i> Port Info
+                                </NavLink>
+                            </li>
+
+
+                           
+
+                           
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </RadzenPanelMenu>
+
+
+
+
+    </nav>
+</div>
